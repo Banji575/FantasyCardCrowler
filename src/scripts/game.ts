@@ -4,7 +4,7 @@ import { Preload } from './scenes/Preload'
 
 
 const DEFAULT_WIDTH = 1280
-const DEFAULT_HEIGHT = 720
+const DEFAULT_HEIGHT = 980
 
 const config = {
   type: Phaser.AUTO,
