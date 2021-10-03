@@ -19,9 +19,20 @@ export class Preload extends Phaser.Scene{
         this.load.image('mainTreeTileset','assets/maps/topDownMap/TX Plant.png' )
         this.load.image('mainStraisTileset','assets/maps/topDownMap/TX Struct.png')
 
+        //interface element
+        this.load.image('cardPlace', 'assets/img/inteface/cardPlace.png')
+
+        //card
+        this.load.image('cardTemplate', 'assets/img/Elements/cardTemplate.png')
+
     }
 
     create(){
         this.scene.start('main')
+    }
+
+
+    initSystemClass(){
+        
     }
 }

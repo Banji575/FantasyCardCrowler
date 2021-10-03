@@ -1,5 +1,4 @@
-import Character from "./Objects/Character"
-import Player from "./Objects/Player"
+import Player from "../Objects/Player"
 
 export class InputSystem extends Phaser.Input.InputPlugin{
     private cursor: Phaser.Types.Input.Keyboard.CursorKeys

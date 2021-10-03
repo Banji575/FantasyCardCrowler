@@ -1,4 +1,4 @@
-import { InputSystem } from "../Input"
+import { InputSystem } from "../Systems/Input"
 import {Level} from "../level/LevelCreator"
 import { MainLevel } from "../level/levels"
 import Character from "../Objects/Character"
@@ -20,6 +20,8 @@ export default class Main extends Phaser.Scene{
         this.player = new Player(this, 350 ,150,'playerIdle',1)
         this.inputController = new InputSystem(this, this.player)
         this.cursor = this.input.keyboard.createCursorKeys()
+
+        this.scene.start('battle')
     }
 
     update(){

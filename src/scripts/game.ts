@@ -1,10 +1,11 @@
 import 'phaser'
+import { Battle } from './scenes/Battle'
 import Main from './scenes/Main'
 import { Preload } from './scenes/Preload'
 
 
-const DEFAULT_WIDTH = 1280
-const DEFAULT_HEIGHT = 980
+const DEFAULT_WIDTH = document.body.clientWidth
+const DEFAULT_HEIGHT = document.body.clientHeight
 
 const config = {
   type: Phaser.AUTO,
@@ -15,7 +16,7 @@ const config = {
     width: DEFAULT_WIDTH,
     height: DEFAULT_HEIGHT
   },
-  scene: [Preload, Main],
+  scene: [Preload, Main, Battle],
   physics: {
     default: 'arcade',
     arcade: {
