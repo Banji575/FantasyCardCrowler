@@ -1,4 +1,4 @@
-interface Card {
+export interface ICard {
     id:number,
     name:string,
     type:string,

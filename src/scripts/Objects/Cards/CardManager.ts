@@ -7,7 +7,7 @@ import { Card } from "./Card";
 export default class CardManager{
     system:System
     cardLibr:CardLibr
-    deck:Array<Card>
+    deck:any
     constructor(){
         this.system = System.getInstance()
         this.cardLibr = CardLibr.getInstance()
@@ -22,7 +22,10 @@ export default class CardManager{
 
         for (let i = 0; i < deckCount; i++) {
             const index = Math.floor(Math.random()*(librLength -1))
-            this.deck.push(libr[index])
+            const card ={...libr[index]}
+            card.cardGameId = i
+
+            this.deck.push(card)
         }
     }
 
