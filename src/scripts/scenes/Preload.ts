@@ -22,8 +22,14 @@ export class Preload extends Phaser.Scene{
         //interface element
         this.load.image('cardPlace', 'assets/img/inteface/cardPlace.png')
 
+
         //card
         this.load.image('cardTemplate', 'assets/img/Elements/cardTemplate.png')
+
+        //cardImage
+        this.load.image('MediumAttack', 'assets/img/cardArt/mediumAttack.jpg')
+        this.load.image('MediumArmor', 'assets/img/cardArt/mediumArmor.jpg')
+        this.load.image('MediumFireball', 'assets/img/cardArt/mediumFireball.jpg')
 
     }
 

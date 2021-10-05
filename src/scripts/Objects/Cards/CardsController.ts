@@ -17,11 +17,31 @@ export class CardController {
    cards:Card[];
    system:System
    cardCoords:cardCoord[]
-
     constructor(private scene:Phaser.Scene, private cardPlace:CardPlace){
         this.cards = []
         this.system = System.getInstance()
         this.cardCoords = []
+    }
+
+    private createCard(el,i = 0,isTween:boolean = true):Card{
+        const cardPlace = this.cardPlace.cardPlaceObject
+        const cpX = (cardPlace.width * cardPlace.scaleX / this.system.state.handCount) / 2
+        const cpY = cardPlace.y + (cardPlace.height * cardPlace.scaleY)/2
+        const card = new Card(this.scene, 0, cpY, 'cardTemplate',el).setOrigin(0,0.5)
+
+        if(isTween){
+            this.scene.tweens.add({
+                targets:card,
+                x:cpX *(i * 2) + (cpX/2),
+                duration:500,
+                ease: 'Expo',
+               onComplete:(t:any) =>{ 
+               this.cardCoords.push({x:t.targets[0].x, y: t.targets[0].y})
+               console.log(this.cardCoords)}
+            })
+        }
+        card.setInteractive()
+        return card
     }
 
     public handCreater(hand){
@@ -30,46 +50,39 @@ export class CardController {
         const cpY = cardPlace.y + (cardPlace.height * cardPlace.scaleY)/2
 
         hand.forEach((el:any,i)=>{
-            const card = new Card(this.scene, 0, cpY, 'cardTemplate').setOrigin(0,0.5)
-            this.scene.tweens.add({
-                targets:card,
-                x:cpX *(i * 2) + (cpX/2),
-                duration:500,
-                ease: 'Expo',
-                callback:(card)=>this.cardCoords.push(card)
-            })
-            //card.x = cpX *(i * 2) + (cpX/2)
-            card.cardGameId = el.cardGameId
-            card.cardLibrId = el.id
-            card.setInteractive()
-            this.cards.push(card)
-           // this.cardCoords.push({x:card.x, y:card.y})
-            console.log(card)
+           const card = this.createCard(el, i)
+           this.cards.push(card)
         })
-       
+        
     }
 
-    public handDelCard(id:number){
-        console.log(id)
+    
 
+    public handDelCard(id:number, drawCard:Card[]){
        const cardIndex = this.cards?.findIndex(el=>el.cardGameId === id)
        const delCard = this.cards[cardIndex]
-       delCard.destroy()
-       
-        for(let i = 0; i<cardIndex; i++){
-            
+      
+       delCard.destroyCard()
+       this.cards.splice(cardIndex, 1)
+       const newCard = this.createCard(drawCard[0],cardIndex,false)
+
+       this.cards.unshift(newCard)
+
+        for(let i = 0; i<=cardIndex; i++){
             const card = this.cards[i]
-            this.cards[i] = this.cards[i+1]
+            //this.cards[i] = this.cards[i+1]
             this.scene.tweens.add({
                 targets:card,
-                x:this.cardCoords[i+1].x,
-                duration:500,
+                x:this.cardCoords[i].x,
+                duration:1000,
                 ease: 'Expo'
             })
         }
-
-
-      // console.log(this.cards)
     }
-
+    
+    cardSync(){
+        this.cards.forEach(el=>{
+            el.syncElem()
+        })
+    }
 }

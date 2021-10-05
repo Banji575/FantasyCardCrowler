@@ -28,9 +28,14 @@ export class Battle extends Phaser.Scene{
 
     }
 
+    update(){
+        this.cardController.cardSync()
+    }
+
     createHand(){
-        const hand = this.cardManager.getHand()
-        this.cardController.handCreater(hand)
+        // const hand = this.cardManager.getHand()
+        const card = this.cardManager.drawCard(5)
+        this.cardController.handCreater(card)
     }
 
     onClickObject(pointer, gameObject){
@@ -55,6 +60,9 @@ export class Battle extends Phaser.Scene{
         this.input.off('pointermove')
         this.input.off('pointerup')
         this.graphic.clear()
-        this.cardController.handDelCard(this.currentCard.cardGameId)
+        //взял карту из колоды и добавил ее в руку
+        const drawCard = this.cardManager.drawCard(1)
+        //console.log(drawCard)
+        this.cardController.handDelCard(this.currentCard.cardGameId, drawCard)
     }
 }

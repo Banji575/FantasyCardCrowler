@@ -14,7 +14,8 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT
+    height: DEFAULT_HEIGHT,
+    backgroundColor: '#2d2d88'
   },
   scene: [Preload, Main, Battle],
   physics: {

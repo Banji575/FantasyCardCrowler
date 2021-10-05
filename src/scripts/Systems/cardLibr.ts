@@ -5,7 +5,7 @@ export interface ICard {
     props:CardProps
 }
 
-interface CardProps {
+export interface CardProps {
     power:number,
     armor:number,
     damage:number
@@ -38,7 +38,7 @@ export class CardLibr{
         return {
             0:{
                 id:1,
-                mane:'medium armor',
+                name:'Medium Armor',
                 type:'defence',
                 props:{
                     power:0,
@@ -48,7 +48,7 @@ export class CardLibr{
             },
             1:{
                 id:2,
-                mane:'medium attack',
+                name:'Medium Attack',
                 type:'attack',
                 props:{
                     power:0,
@@ -58,7 +58,7 @@ export class CardLibr{
             },
             2:{
                 id:2,
-                mane:'medium fireBall',
+                name:'Medium Fireball',
                 type:'magick',
                 props:{
                     power:-1,

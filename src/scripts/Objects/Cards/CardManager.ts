@@ -21,12 +21,23 @@ export default class CardManager{
         const libr = CardLibr.getInstance().getCardLibr()
 
         for (let i = 0; i < deckCount; i++) {
-            const index = Math.floor(Math.random()*(librLength -1))
+            const index = Math.floor(Math.random()*(librLength))
             const card ={...libr[index]}
             card.cardGameId = i
 
             this.deck.push(card)
         }
+    }
+
+    public drawCard(count:number):Card[]{
+        const cardArr = new Array(count)
+        .fill('')
+        .map((el,i)=>{
+            const elem = this.deck[0]
+            this.deck.shift()
+            return elem
+        })
+        return cardArr
     }
 
     public getDeck(){
