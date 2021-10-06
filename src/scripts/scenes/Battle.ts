@@ -1,15 +1,20 @@
-import { Card } from "../Objects/Cards/Card"
+
+import { Shader } from "../Effects/Shaders"
 import CardManager from "../Objects/Cards/CardManager"
 import { CardPlace } from "../Objects/Cards/CardPlace"
 import { CardController } from "../Objects/Cards/CardsController"
-import { CardLibr } from "../Systems/cardLibr"
-import { System } from "../Systems/System"
+import { Enemy } from "../Objects/Enemy"
+import { EnemyFactory } from "../Objects/Enemy/EnemyFactory"
+import { assasins } from "../Objects/Enemy/EnemysConfigs"
 
 export class Battle extends Phaser.Scene{
     cardManager:CardManager
     cardController:CardController
     graphic:any
     currentCard
+    enemy: Phaser.GameObjects.Sprite
+    enemyFactory:EnemyFactory
+
     constructor(){
         super('battle')
 
@@ -24,8 +29,12 @@ export class Battle extends Phaser.Scene{
 
         this.input.on('gameobjectdown', this.onClickObject.bind(this))
         
+        this.enemyFactory = new EnemyFactory(this)
 
+        const enemy = this.enemyFactory.createEnemy(150, 150, assasins)
 
+        // const shader = new Shader(this)
+        // shader.shade()
     }
 
     update(){
@@ -65,4 +74,6 @@ export class Battle extends Phaser.Scene{
         //console.log(drawCard)
         this.cardController.handDelCard(this.currentCard.cardGameId, drawCard)
     }
+
+
 }

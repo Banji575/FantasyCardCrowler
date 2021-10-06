@@ -31,6 +31,10 @@ export class Preload extends Phaser.Scene{
         this.load.image('MediumArmor', 'assets/img/cardArt/mediumArmor.jpg')
         this.load.image('MediumFireball', 'assets/img/cardArt/mediumFireball.jpg')
 
+        //enemy
+        this.load.spritesheet('assasinIdle', 'assets/BattleImg/Enemyes/assasin/Idle.png',{frameWidth:150, frameHeight:128})
+
+
     }
 
     create(){

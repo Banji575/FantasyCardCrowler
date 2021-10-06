@@ -48,7 +48,6 @@ export class Card extends Phaser.GameObjects.Sprite{
 
     createCart(){
         this.scene.add.existing(this).setOrigin(0).setScale(this.defaultScale * this.system.scale).setDepth(10)
-        console.log(this.config)
     }
 
     createText(){
@@ -58,7 +57,6 @@ export class Card extends Phaser.GameObjects.Sprite{
     createCardArt(){
         this.image = this.scene.add.image(0,0,this.name.replace(/\s/g, '')).setScale(this.system.scale * 0.4).setOrigin(0,0.5).setDepth(9)
         const img = this.name.trim()
-        console.log(img)
     }
 
     syncElem(){
