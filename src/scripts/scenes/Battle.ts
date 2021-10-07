@@ -6,6 +6,8 @@ import { CardController } from "../Objects/Cards/CardsController"
 import { Enemy } from "../Objects/Enemy"
 import { EnemyFactory } from "../Objects/Enemy/EnemyFactory"
 import { assasins } from "../Objects/Enemy/EnemysConfigs"
+import MagicCast from "../Objects/Magic/MagicCast"
+import { MagicController } from "../Objects/Magic/MagicController"
 
 export class Battle extends Phaser.Scene {
     cardManager: CardManager
@@ -14,6 +16,8 @@ export class Battle extends Phaser.Scene {
     currentCard
     enemy: Enemy
     enemyFactory: EnemyFactory
+    enemy2:Enemy
+    magicController: MagicController
 
     constructor() {
         super('battle')
@@ -30,9 +34,12 @@ export class Battle extends Phaser.Scene {
         this.input.on('gameobjectdown', this.onClickObject.bind(this))
 
         this.enemyFactory = new EnemyFactory(this)
-
         this.enemy = this.enemyFactory.createEnemy(150, 150, assasins)
-        this.enemy.flipX = true
+        this.enemy2 = this.enemyFactory.createEnemy(500, 150, assasins)
+
+        this.magicController = new MagicController(this)
+
+        this.enemy2.flipX = true
         
         // const shader = new Shader(this)
         // shader.shade()
@@ -60,16 +67,16 @@ export class Battle extends Phaser.Scene {
     cardAiming(pointer, gameObject) {
         this.graphic.clear()
         const line = new Phaser.Geom.Line(gameObject.x + (gameObject.width * gameObject.scaleX) / 2, gameObject.y, pointer.x, pointer.y)
-        const enemyRect = new Phaser.Geom.Rectangle(this.enemy.x, this.enemy.y, this.enemy.width, this.enemy.height)
+        const enemyRect = new Phaser.Geom.Rectangle(this.enemy2.x, this.enemy2.y, this.enemy2.width, this.enemy2.height)
 
         this.graphic.lineStyle(2, 0x00ff00)
         this.graphic.strokeLineShape(line)
 
         if (Phaser.Geom.Intersects.LineToRectangle(line, enemyRect)) {
             //console.log('intersect',  this.enemy  instanceof Enemy)
-            this.enemy.underAim(true)
+            this.enemy2.underAim(true)
         }else{
-            this.enemy.underAim(false)
+            this.enemy2.underAim(false)
         }
 
     }
@@ -81,8 +88,9 @@ export class Battle extends Phaser.Scene {
         //взял карту из колоды и добавил ее в руку
         const drawCard = this.cardManager.drawCard(1)
         //console.log(drawCard)
+        this.magicController.checkMagic(this.enemy, this.enemy2,this.currentCard.config)
         this.cardController.handDelCard(this.currentCard.cardGameId, drawCard)
-        this.enemy.underAim(false)
+        this.enemy2.underAim(false)
     }
 
 
