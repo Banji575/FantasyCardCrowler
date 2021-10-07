@@ -18,7 +18,6 @@ export class Enemy extends Character{
                 repeat:-1
             })
         })
-        console.log(this.enemyAnimation)
     }
 
     public animationStart(name:string = 'idle'){

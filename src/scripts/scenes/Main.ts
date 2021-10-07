@@ -25,6 +25,6 @@ export default class Main extends Phaser.Scene{
     }
 
     update(){
-     this.inputController.keyboardController()
+        this.inputController.keyboardController()
     }
 }

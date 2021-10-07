@@ -6,14 +6,18 @@ import { CardController } from "../Objects/Cards/CardsController"
 import { Enemy } from "../Objects/Enemy"
 import { EnemyFactory } from "../Objects/Enemy/EnemyFactory"
 import { assasins } from "../Objects/Enemy/EnemysConfigs"
+import MagicCast from "../Objects/Magic/MagicCast"
+import { MagicController } from "../Objects/Magic/MagicController"
 
 export class Battle extends Phaser.Scene{
     cardManager:CardManager
     cardController:CardController
     graphic:any
     currentCard
-    enemy: Phaser.GameObjects.Sprite
+    enemy: Enemy
+    enemy2:Enemy
     enemyFactory:EnemyFactory
+    magicController: MagicController
 
     constructor(){
         super('battle')
@@ -31,7 +35,10 @@ export class Battle extends Phaser.Scene{
         
         this.enemyFactory = new EnemyFactory(this)
 
-        const enemy = this.enemyFactory.createEnemy(150, 150, assasins)
+        this.enemy = this.enemyFactory.createEnemy(150, 150, assasins)
+        this.enemy2 = this.enemyFactory.createEnemy(500, 150, assasins)
+
+        this.magicController = new MagicController(this)
 
         // const shader = new Shader(this)
         // shader.shade()
@@ -72,6 +79,7 @@ export class Battle extends Phaser.Scene{
         //взял карту из колоды и добавил ее в руку
         const drawCard = this.cardManager.drawCard(1)
         //console.log(drawCard)
+        this.magicController.checkMagic(this.enemy, this.enemy2,this.currentCard.config)
         this.cardController.handDelCard(this.currentCard.cardGameId, drawCard)
     }
 
