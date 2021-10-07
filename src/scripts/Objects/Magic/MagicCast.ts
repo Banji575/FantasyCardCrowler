@@ -3,6 +3,7 @@ import { Enemy } from "../Enemy"
 export default class MagicCast{
     currentMagic:Phaser.GameObjects.Sprite
     magicCollider:Phaser.Physics.Arcade.Collider
+
     constructor(public scene:Phaser.Scene){}
 
     cast(start:Enemy, target:Enemy, type:string, callback:Function){
