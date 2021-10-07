@@ -6,6 +6,7 @@ export class Enemy extends Character{
         super(scene, x, y, texture, frame)
         this.createAnimation()
         this.animationStart()
+
     }
     private createAnimation(){
         Object.keys(this.enemyAnimation).forEach(el=>{
@@ -18,11 +19,18 @@ export class Enemy extends Character{
                 repeat:-1
             })
         })
-        console.log(this.enemyAnimation)
     }
 
     public animationStart(name:string = 'idle'){
         this.play(name)
+    }
+
+    public underAim(isAim:boolean){
+       if(isAim){
+            this.setTint(0xff0000)
+        }else{
+            this.setTint(0xffffff)
+        }
     }
     move(){}
 }

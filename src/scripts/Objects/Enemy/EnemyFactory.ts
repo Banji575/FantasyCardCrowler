@@ -20,6 +20,9 @@ export class EnemyFactory{
     }
 
     createEnemy(x:number, y:number,ec:EnemyConfig){
-        return new Enemy(this.scene, x, y, ec.texture, ec.frame, ec.animation)
+        return new Enemy(this.scene, x, y, ec.texture, ec.frame, ec.animation).setOrigin(0)
+        
+        
+
     }
 }
