@@ -1,13 +1,14 @@
 import Character from "./Character";
-import { EnemyAnimation, EnemyConfig } from "./Enemy/EnemyFactory";
+import { CharParams, EnemyAnimation, EnemyConfig } from "./Enemy/EnemyFactory";
 
 export class Enemy extends Character{
-    constructor(public scene:Phaser.Scene,public x:number, public y:number,texture:string, frame:number, public enemyAnimation:EnemyAnimation){
+    constructor(public scene:Phaser.Scene,public x:number, public y:number,texture:string, frame:number, public enemyAnimation:EnemyAnimation, public params: CharParams){
         super(scene, x, y, texture, frame)
         this.createAnimation()
         this.animationStart()
-
     }
+
+
     private createAnimation(){
         Object.keys(this.enemyAnimation).forEach(el=>{
             if(this.enemyAnimation[el] === null) return

@@ -34,6 +34,8 @@ export class CardLibr{
     
     }
 
+    
+
     private cardLibr(){
         return {
             0:{

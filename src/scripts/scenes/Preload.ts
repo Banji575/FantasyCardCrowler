@@ -21,7 +21,11 @@ export class Preload extends Phaser.Scene {
 
         //interface element
         this.load.image('cardPlace', 'assets/img/inteface/cardPlace.png')
-
+        this.load.image('ballteCharUi', 'assets/img/inteface/battleCharUI.png')
+        this.load.spritesheet('iconSet', 'assets/img/inteface/icon/Spritesheet32x32.png',{frameWidth:32, frameHeight:32})
+        this.load.spritesheet('iconSet2', 'assets/img/inteface/icon/Free_Skills.png',{frameWidth:32, frameHeight:32})
+        this.load.image('iconPlane', 'assets/img/inteface/q/plane.png')
+        
 
         //card
         this.load.image('cardTemplate', 'assets/img/Elements/cardTemplate.png')

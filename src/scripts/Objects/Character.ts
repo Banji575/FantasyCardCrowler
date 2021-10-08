@@ -13,7 +13,7 @@ export default abstract class Character extends Phaser.GameObjects.Sprite{
     }
 
     init(){
-      const enemy = this.scene.add.existing(this).setOrigin(1).setScale(1).setOrigin(0)
+      const enemy = this.scene.add.existing(this).setOrigin(1).setScale(1).setOrigin(0).setDepth(20)
       this.physicBody = this.scene.add.rectangle(enemy.x + (enemy.width*enemy.scaleX) / 4, enemy.y + (enemy.height*enemy.scaleY) / 4,enemy.width*enemy.scaleX / 2,enemy.y - enemy.height*enemy.scaleY / 2).setOrigin(0).setInteractive()
       this.scene.physics.add.existing(this.physicBody)
       this.scene.physics.add.existing(enemy)

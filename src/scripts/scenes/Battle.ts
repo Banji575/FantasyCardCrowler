@@ -8,6 +8,8 @@ import { EnemyFactory } from "../Objects/Enemy/EnemyFactory"
 import { assasins } from "../Objects/Enemy/EnemysConfigs"
 import MagicCast from "../Objects/Magic/MagicCast"
 import { MagicController } from "../Objects/Magic/MagicController"
+import { BattleCharUI } from "./../Objects/UI/BattleCharUI"
+
 
 export class Battle extends Phaser.Scene {
     cardManager: CardManager
@@ -18,7 +20,7 @@ export class Battle extends Phaser.Scene {
     enemyFactory: EnemyFactory
     enemy2:Enemy
     magicController: MagicController
-
+    CharUI :BattleCharUI
     constructor() {
         super('battle')
 
@@ -29,6 +31,8 @@ export class Battle extends Phaser.Scene {
         this.cardController = new CardController(this, cardPlace)
         this.cardManager = new CardManager()
 
+       
+
         this.createHand()
 
         this.input.on('gameobjectdown', this.onClickObject.bind(this))
@@ -36,6 +40,8 @@ export class Battle extends Phaser.Scene {
         this.enemyFactory = new EnemyFactory(this)
         this.enemy = this.enemyFactory.createEnemy(150, 150, assasins)
         this.enemy2 = this.enemyFactory.createEnemy(500, 150, assasins)
+       // console.log(this.enemy.params)
+        this.CharUI = new BattleCharUI(this, 300,500,'ballteCharUi',[this.enemy, this.enemy2])
 
         this.magicController = new MagicController(this)
 
@@ -73,7 +79,6 @@ export class Battle extends Phaser.Scene {
         this.graphic.strokeLineShape(line)
 
         if (Phaser.Geom.Intersects.LineToRectangle(line, enemyRect)) {
-            //console.log('intersect',  this.enemy  instanceof Enemy)
             this.enemy2.underAim(true)
         }else{
             this.enemy2.underAim(false)

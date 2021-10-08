@@ -4,6 +4,7 @@ export interface EnemyConfig{
     texture:string,
     frame:number,
     animation: EnemyAnimation
+    params:CharParams
 }
 
 export interface EnemyAnimation{
@@ -14,15 +15,20 @@ export interface EnemyAnimation{
     diy:string|null,
 }
 
+export interface CharParams{
+    power,
+    armor,
+    magicPower,
+    magicArmor,
+    live
+}
+
 export class EnemyFactory{
     constructor(private scene:Phaser.Scene){
 
     }
 
     createEnemy(x:number, y:number,ec:EnemyConfig){
-        return new Enemy(this.scene, x, y, ec.texture, ec.frame, ec.animation).setOrigin(0)
-        
-        
-
+        return new Enemy(this.scene, x, y, ec.texture, ec.frame, ec.animation,ec.params).setOrigin(0)
     }
 }

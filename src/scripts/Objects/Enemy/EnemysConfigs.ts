@@ -9,5 +9,12 @@ export const assasins:EnemyConfig = {
         run:null,
         walk:null,
         diy:null,
+    },
+    params:{
+        power:5,
+        armor:3,
+        magicPower:3,
+        magicArmor:6,
+        live:8
     }
 }
