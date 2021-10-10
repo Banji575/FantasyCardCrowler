@@ -11,8 +11,9 @@ export class MagicController {
         switch (cardConfig.type) {
             case 'magick':
                 this.magicCast.cast(targetStart, targetEnd, cardConfig.name, this.endMagicCallback)
-
                 break
+            case 'attack':
+                targetStart.goAttack(targetEnd)
         }
     }
 

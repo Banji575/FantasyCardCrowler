@@ -67,7 +67,6 @@ export class Battle extends Phaser.Scene {
             this.input.on('pointerup', this.resetHandler.bind(this))
             this.currentCard = gameObject
         }
-        //gameObject.destroy()
     }
 
     cardAiming(pointer, gameObject) {

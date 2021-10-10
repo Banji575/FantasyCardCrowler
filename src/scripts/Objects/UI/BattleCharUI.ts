@@ -21,6 +21,7 @@ export class BattleCharUI extends Phaser.GameObjects.Sprite{
     iconPadding:number = 5
     system:System
     textStyle:object
+    textParamsArr: Phaser.GameObjects.Text[] = []
     constructor(public scene:Phaser.Scene, public x:number, public y:number, public texture:any, private enemyes:Enemy[]){
         super(scene, x, y, texture)
         this.system = System.getInstance()
@@ -48,6 +49,12 @@ export class BattleCharUI extends Phaser.GameObjects.Sprite{
         icons.forEach((el,i)=>{
            const icon = this.scene.add.sprite(mainWindow.x + this.iconPadding * (10*(mainWindow.scaleX)) , (startPointY+ i * (this.iconSize*mainWindow.scaleX )) + this.iconPadding , el.set, el.frame).setOrigin(0,0.5).setScale(this.system.scale * 0.5)
            const text = this.scene.add.text(icon.x + this.iconPadding * (10*(mainWindow.scaleX)), icon.y, char.params[el.name], this.textStyle).setOrigin(0, 0.5)
+           this.textParamsArr.push(text)
         })
+        console.log(this.textParamsArr)
+    }
+
+    rerenderParams(){
+
     }
 }

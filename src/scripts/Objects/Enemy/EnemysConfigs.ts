@@ -5,8 +5,8 @@ export const assasins:EnemyConfig = {
     frame: 0,
     animation: {
         idle:'assasinIdle',
-        attack:null,
-        run:null,
+        attack:'assasinAttack',
+        run:'assasinRun',
         walk:null,
         diy:null,
     },

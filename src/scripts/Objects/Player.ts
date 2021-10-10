@@ -36,6 +36,8 @@ export default class Player extends Character{
         })
     }
 
+    public getDamage(){}
+
     move(dir:string | number){
             const {x,y} = keyboardDirection[dir]
             this.x += x
@@ -44,8 +46,6 @@ export default class Player extends Character{
                 this.play('playerRun')
                 this.isRun = true
             }
-       
-       
     }
 
 }

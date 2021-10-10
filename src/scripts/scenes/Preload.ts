@@ -37,6 +37,8 @@ export class Preload extends Phaser.Scene {
 
         //enemy
         this.load.spritesheet('assasinIdle', 'assets/BattleImg/Enemyes/assasin/Idle.png', { frameWidth: 150, frameHeight: 128 })
+        this.load.spritesheet('assasinRun', 'assets/BattleImg/Enemyes/assasin/Run.png', { frameWidth: 150, frameHeight: 128 })
+        this.load.spritesheet('assasinAttack', 'assets/BattleImg/Enemyes/assasin/Attack1.png', { frameWidth: 150, frameHeight: 128 })
 
         //magic
         this.load.spritesheet('Medium Fireball_magic', 'assets/img/magic/FireBall_3_64x64.png', { frameWidth: 64, frameHeight: 64 })
