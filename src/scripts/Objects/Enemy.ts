@@ -54,9 +54,13 @@ export class Enemy extends Character{
         const targetX = target.x + (target.width * target.scaleX)/2
 
         this.scene.physics.moveTo(this, targetX, target.y,100)
-        console.log(target.body, this.body)
-       this.enemyCollider = this.scene.physics.add.overlap(this, target.physicBody, this.stopMove.bind(this))
 
+        this.onOverlap(target, this.stopMove.bind(this))
+        
+    }
+
+    private onOverlap(target, callback){
+        this.enemyCollider = this.scene.physics.add.overlap(this, target.physicBody, callback )
     }
 
     private stopMove(first, second){
@@ -71,8 +75,10 @@ export class Enemy extends Character{
         if(distance>90){
         first.body.velocity.x = 0
         first.body.velocity.y = 0
+        
+        this.scene.physics.world.removeCollider(this.enemyCollider)
+        //this.enemyCollider.destroy()
         this.anims.play('attack').on('animationrepeat', this.goBackPosition.bind(this))
-        this.enemyCollider.destroy()
         }
     }
 
@@ -80,6 +86,15 @@ export class Enemy extends Character{
         this.scene.physics.moveTo(this, this.startPosition.x, this.startPosition.y)
         this.play('run')
         this.flipX = true
+        this.onOverlap(this, this.stopBack.bind(this))
+    }
+
+    private stopBack(){
+        this.body.velocity.x = 0;
+         this.body.velocity.y = 0;
+          this.flipX = false;
+           this.anims.play('idle');
+           this.scene.physics.world.removeCollider(this.enemyCollider)
     }
     move(){}
 
